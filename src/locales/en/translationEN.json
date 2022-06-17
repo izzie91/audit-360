@@ -12,6 +12,8 @@
     "login-account-button":"Login",
 
     "forgot-password-link":"Did you forget your password?",
+    "send-email-button":"Send",
+    "send-email-label":"Introduce your email and we'll send you an email with the steps to change your password",
     "register-link":"New here? Sign up",
 
     "legacy-link":"Legal Advice",
