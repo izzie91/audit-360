@@ -1,0 +1,21 @@
+{
+    "access-button":"Log in",    
+    
+    "create-account-header":"Create a free account",
+    "create-email-placeholder":"Email",
+    "create-password-placeholder":"Password",
+    "create-account-button":"Create account",
+
+    "login-account-header":"Access your account",
+    "login-email-placeholder":"Email",
+    "login-password-placeholder":"Password",
+    "login-account-button":"Login",
+
+    "forgot-password-link":"Did you forget your password?",
+    "register-link":"New here? Sign up",
+
+    "legacy-link":"Legal Advice",
+    "privacy-policy-link":"Privacy Policy",
+    "terms-link":"Terms of service"
+
+}

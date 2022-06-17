@@ -1,0 +1,20 @@
+{
+    "access-button":"Accede",    
+
+    "create-account-header":"Crea tu cuenta gratuita",
+    "create-email-placeholder":"Correo",
+    "create-password-placeholder":"Contraseña",
+    "create-account-button":"Crear cuenta",
+
+    "login-account-header":"Accede a tu cuenta",
+    "login-email-placeholder":"Email",
+    "login-password-placeholder":"Password",
+    "login-account-button":"Accede",
+
+    "forgot-password-link":"Has olvidado tu contraseña?",
+    "register-link":"Nuevo por aquí? Regístrate",
+
+    "legacy-link":"Aviso Legal",
+    "privacy-policy-link":"Política de Privacidad",
+    "terms-link":"Términos de Servicio"
+}
