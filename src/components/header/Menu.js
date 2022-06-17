@@ -1,4 +1,8 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
+
+//Mui
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,8 +19,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 export default function AccountMenu() {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const open = Boolean(anchorEl);
+
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -85,7 +90,11 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch(authActions.onLogout());
+          }}
+        >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

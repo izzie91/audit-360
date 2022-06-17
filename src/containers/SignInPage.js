@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 
 //Mui
 import Container from "@mui/material/Container";
@@ -16,7 +19,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 //Components
-import RecoveryModal from "../../components/modals/RecoveryModal";
+import RecoveryModal from "../components/modals/RecoveryModal";
 
 const defaultValues = {
   email: "",
@@ -26,6 +29,8 @@ const defaultValues = {
 function SignInPage() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // useForm hook + MUI
   const {
@@ -43,6 +48,15 @@ function SignInPage() {
 
   const onSubmit = (values) => {
     console.log(values);
+    /* sessionStorage.setItem("isAuthenticated", "pepe");
+    navigate("/modules"); */
+    dispatch(
+      authActions.onLogin({
+        token: "token",
+        user: "user",
+      })
+    );
+    navigate("/modules");
   };
 
   return (

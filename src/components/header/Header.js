@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 //Mui
 import AppBar from "@mui/material/AppBar";
@@ -16,7 +16,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 //Components
 import LanguageToggle from "./LanguageToggle";
-/* import Menu from "./Menu"; */
+import Menu from "./Menu";
 
 import logo360audit from "../../assets/logo360audit.jpg";
 
@@ -42,6 +42,7 @@ export default function Header(props) {
   const { t } = useTranslation();
   const theme = useTheme();
   const matchesSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
     <React.Fragment>
@@ -70,35 +71,24 @@ export default function Header(props) {
                 flexDirection="row"
                 sx={{ alignItems: "center", justifyContent: matchesSm ? "flex-end" : "center" }}
               >
-                {/* <Menu></Menu> */}
-                <Button
-                  href="/sign-in"
-                  variant="contained"
-                  disableElevation
-                  sx={{ textTransform: "capitalize", marginLeft: theme.spacing(1) }}
-                >
-                  {t("access-button")}
-                </Button>
+                {isAuthenticated ? (
+                  <Menu></Menu>
+                ) : (
+                  <Button
+                    href="/sign-in"
+                    variant="contained"
+                    disableElevation
+                    sx={{ textTransform: "capitalize", marginLeft: theme.spacing(1) }}
+                  >
+                    {t("access-button")}
+                  </Button>
+                )}
                 <LanguageToggle></LanguageToggle>
               </Box>
             </Container>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <Toolbar />
-      <Box
-        sx={{
-          minHeight: "80vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          paddingTop: theme.spacing(4),
-          backgroundColor: theme.palette.grey[100],
-        }}
-      >
-        <Outlet></Outlet>
-      </Box>
     </React.Fragment>
   );
 }

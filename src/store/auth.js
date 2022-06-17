@@ -15,9 +15,11 @@ const authSlice = createSlice({
   reducers: {
     onLogin(state, action) {
       //onLoginAction
+      state.isAuthenticated = true;
     },
     onLogout(state) {
       //onLogoutAction
+      state.isAuthenticated = false;
     },
     updateToken(state, action) {
       //update token
