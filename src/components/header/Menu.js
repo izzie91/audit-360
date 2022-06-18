@@ -1,4 +1,5 @@
-import * as React from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 
@@ -18,7 +19,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function AccountMenu() {
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { t } = useTranslation();
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ export default function AccountMenu() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Typography variant="body1" sx={{ minWidth: 60, color: theme.palette.text.primary }}>
           isabel
@@ -88,7 +90,7 @@ export default function AccountMenu() {
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          {t("profile-menu-settings")}
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -98,9 +100,9 @@ export default function AccountMenu() {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          {t("profile-menu-logout")}
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </>
   );
 }

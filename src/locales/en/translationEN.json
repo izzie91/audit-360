@@ -16,6 +16,9 @@
     "send-email-label":"Introduce your email and we'll send you an email with the steps to change your password",
     "register-link":"New here? Sign up",
 
+    "profile-menu-settings": "Settings",
+    "profile-menu-logout": "Logout",
+
     "legacy-link":"Legal Advice",
     "privacy-policy-link":"Privacy Policy",
     "terms-link":"Terms of service"

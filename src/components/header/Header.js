@@ -45,7 +45,7 @@ export default function Header(props) {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <ElevationScroll {...props}>
         <AppBar position="fixed">
@@ -89,6 +89,6 @@ export default function Header(props) {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-    </React.Fragment>
+    </>
   );
 }

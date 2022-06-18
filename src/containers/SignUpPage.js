@@ -48,7 +48,7 @@ function SingUpPage() {
         variant="h5"
         color="primary"
         align="center"
-        sx={{ color: theme.palette.grey[700], marginTop: theme.spacing(5) }}
+        sx={{ color: theme.palette.grey[700], marginBottom: theme.spacing(3), marginTop: theme.spacing(2) }}
       >
         {t("create-account-header")}
       </Typography>

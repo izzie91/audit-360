@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,9 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 //Components
 import RecoveryModal from "../components/modals/RecoveryModal";
 
+//CustomHooks
+import useHTTPRequest from "../functions/hooks/useHTTPRequest";
+
 const defaultValues = {
   email: "",
   password: "",
@@ -41,22 +44,54 @@ function SignInPage() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [openRecoveryModal, setOpenRecoveryModal] = useState(false);
+  const { response, error, loading, makeRequest } = useHTTPRequest("POST", "/360audit/api/login");
 
   const onClickOpenModalHandler = () => setOpenRecoveryModal(true);
 
   const onCloseRecoveryModal = () => setOpenRecoveryModal(false);
 
+  /*   useEffect(() => {
+    if (!loading) {
+      console.log(response);
+    }
+  }, [loading]); */
+
+  // Example POST method implementation:
+  async function postData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+
   const onSubmit = (values) => {
     console.log(values);
     /* sessionStorage.setItem("isAuthenticated", "pepe");
     navigate("/modules"); */
-    dispatch(
+
+    /* dispatch(
       authActions.onLogin({
         token: "token",
         user: "user",
       })
     );
-    navigate("/modules");
+    navigate("/modules"); */
+    const bodyRequest = { email: values.email, password: values.password };
+    //makeRequest(bodyRequest);
+    postData("/360audit/api/login", bodyRequest).then((data) => {
+      console.log(data); // JSON data parsed by `data.json()` call
+    });
   };
 
   return (
@@ -72,7 +107,7 @@ function SignInPage() {
         variant="h5"
         color="primary"
         align="center"
-        sx={{ color: theme.palette.grey[700], marginBottom: theme.spacing(3) }}
+        sx={{ color: theme.palette.grey[700], marginBottom: theme.spacing(3), marginTop: theme.spacing(2) }}
       >
         {t("login-account-header")}
       </Typography>
